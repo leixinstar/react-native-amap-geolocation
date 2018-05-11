@@ -60,6 +60,36 @@ public class AMapGeolocationModule extends ReactContextBaseJavaModule implements
         if (options.hasKey("reGeocode")) {
             option.setNeedAddress(options.getBoolean("reGeocode"));
         }
+        if(options.hasKey("locationMode")) {
+            option.setLocationMode(AMapLocationMode.valueOf(options.getString("locationMode")));//可选，设置定位模式，可选的模式有高精度、仅设备、仅网络。默认为高精度模式
+        }
+        if(options.hasKey("gpsFirst")) {
+            option.setGpsFirst(options.getBoolean("gpsFirst"));//可选，设置是否gps优先，只在高精度模式下有效。默认关闭
+        }
+        if(options.hasKey("httpTimeout")) {
+            option.setHttpTimeOut(options.getInt("httpTimeout"));//可选，设置网络请求超时时间。默认为30秒。在仅设备模式下无效
+        }
+        if(options.hasKey("interval")) {
+            option.setInterval(options.getInt("interval"));//可选，设置连续定位间隔。
+        }
+        if(options.hasKey("needAddress")) {
+            option.setNeedAddress(options.getBoolean("needAddress"));//可选，设置是否返回逆地理地址信息。默认是true
+        }
+        if(options.hasKey("onceLocation")) {
+            option.setOnceLocation(options.getBoolean("onceLocation"));//可选，设置是否单次定位。默认是false
+        }
+        if(options.hasKey("locationCacheEnable")) {
+            option.setLocationCacheEnable(options.getBoolean("locationCacheEnable"));//可选，设置是否开启缓存，默认为true.
+        }
+        if(options.hasKey("onceLocationLatest")) {
+            option.setOnceLocationLatest(options.getBoolean("onceLocationLatest"));//可选，设置是否等待wifi刷新，默认为false.如果设置为true,会自动变为单次定位，持续定位时不要使用
+        }
+        if(options.hasKey("locationProtocol")) {
+            option.setLocationProtocol(AMapLocationProtocol.valueOf(options.getString("locationProtocol")));//可选， 设置网络请求的协议。可选HTTP或者HTTPS。默认为HTTP
+        }
+        if(options.hasKey("sensorEnable")) {
+            option.setSensorEnable(options.getBoolean("sensorEnable"));//可选，设置是否使用传感器。默认是false
+        }
         locationClient.setLocationOption(option);
     }
 
