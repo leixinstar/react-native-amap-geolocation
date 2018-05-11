@@ -1,0 +1,79 @@
+{
+  "_from": "react-native-amap-geolocation@^0.3.0",
+  "_id": "react-native-amap-geolocation@0.3.0",
+  "_inBundle": false,
+  "_integrity": "sha1-u+Lk/MiZuVe3Hq67vrrnuuqZ1+Q=",
+  "_location": "/react-native-amap-geolocation",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "react-native-amap-geolocation@^0.3.0",
+    "name": "react-native-amap-geolocation",
+    "escapedName": "react-native-amap-geolocation",
+    "rawSpec": "^0.3.0",
+    "saveSpec": null,
+    "fetchSpec": "^0.3.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "http://registry.npm.taobao.org/react-native-amap-geolocation/download/react-native-amap-geolocation-0.3.0.tgz",
+  "_shasum": "bbe2e4fcc899b957b71eaebbbebae7baea99d7e4",
+  "_spec": "react-native-amap-geolocation@^0.3.0",
+  "_where": "/Users/nick/work/react-native/bus_trip",
+  "author": {
+    "name": "7c00",
+    "email": "i@7c00.cc"
+  },
+  "bugs": {
+    "url": "https://github.com/leixinstar/react-native-amap-geolocation/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "React Native geolocation module for Android + iOS",
+  "devDependencies": {
+    "babel-preset-react-native": "^4.0.0",
+    "react": "^16.2.0",
+    "react-native": "^0.53.3"
+  },
+  "files": [
+    "lib/js",
+    "lib/ios",
+    "lib/android/src",
+    "lib/android/build.gradle"
+  ],
+  "homepage": "https://github.com/leixinstar/react-native-amap-geolocation#readme",
+  "keywords": [
+    "react-native",
+    "amap",
+    "geolocation"
+  ],
+  "license": "MIT",
+  "main": "lib/js",
+  "name": "react-native-amap-geolocation",
+  "peerDependencies": {
+    "react-native": ">=0.47"
+  },
+  "presets": [
+    "react-native"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leixinstar/react-native-amap-geolocation.git"
+  },
+  "rnpm": {
+    "android": {
+      "sourceDir": "lib/android"
+    }
+  },
+  "scripts": {
+    "log-android": "node node_modules/react-native/local-cli/cli.js log-android",
+    "release-android": "node node_modules/react-native/local-cli/cli.js run-android --variant=release",
+    "reload": "adb reverse tcp:8081 tcp:8081 && adb shell input text rr",
+    "run-android": "node node_modules/react-native/local-cli/cli.js run-android",
+    "run-ios": "node node_modules/react-native/local-cli/cli.js run-ios",
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "version": "0.3.0"
+}
