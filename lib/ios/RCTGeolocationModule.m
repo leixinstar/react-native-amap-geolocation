@@ -3,6 +3,8 @@
 #import <AMapLocationKit/AMapLocationKit.h>
 
 @interface RCTLocationModule : RCTEventEmitter <RCTBridgeModule, AMapLocationManagerDelegate>
+
+@property (nonatomic, copy) AMapLocatingCompletionBlock completionBlock;
 @end
 
 @implementation RCTLocationModule {
@@ -29,6 +31,13 @@ RCT_REMAP_METHOD(init, key:(NSString *)key resolver:(RCTPromiseResolveBlock)reso
     } else {
         resolve(nil);
     }
+
+    self.completionBlock = ^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error)
+    {
+        id json = [self json:location reGeocode:reGeocode];
+        [self sendEventWithName:@"AMapGeolocation" body: json];
+        [NSUserDefaults.standardUserDefaults setObject:json forKey:RCTLocationModule.storeKey];
+    };
 }
 
 RCT_EXPORT_METHOD(start) {
@@ -43,7 +52,11 @@ RCT_REMAP_METHOD(getLastLocation, resolver:(RCTPromiseResolveBlock)resolve rejec
     id json = [NSUserDefaults.standardUserDefaults objectForKey:RCTLocationModule.storeKey];
     [self sendEventWithName:@"AMapGeolocation" body: json];
 }
-                   
+
+RCT_EXPORT_METHOD(getOnceLocation) {
+    [_manager requestLocationWithReGeocode:YES completionBlock:self.completionBlock];
+}
+
 - (id)json:(CLLocation *)location reGeocode:(AMapLocationReGeocode *)reGeocode {
     if (reGeocode && reGeocode.formattedAddress.length) {
         return @{

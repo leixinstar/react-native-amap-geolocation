@@ -12,6 +12,8 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
+import com.amap.api.location.AMapLocationClientOption.AMapLocationMode;
+import com.amap.api.location.AMapLocationClientOption.AMapLocationProtocol;
 
 public class AMapGeolocationModule extends ReactContextBaseJavaModule implements AMapLocationListener {
     private final ReactApplicationContext reactContext;
@@ -101,6 +103,17 @@ public class AMapGeolocationModule extends ReactContextBaseJavaModule implements
     @ReactMethod
     public void stop() {
         locationClient.stopLocation();
+    }
+
+    @ReactMethod
+    public void getOnceLocation() {
+        AMapLocationClientOption option = new AMapLocationClientOption();
+        option.setOnceLocation(true);
+        option.setNeedAddress(true);    //可选，设置是否返回逆地理地址信息。默认是true
+        // 设置定位参数
+        locationClient.setLocationOption(option);
+        // 启动定位
+        locationClient.startLocation();
     }
 
     @ReactMethod
