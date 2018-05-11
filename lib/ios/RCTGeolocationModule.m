@@ -5,6 +5,7 @@
 @interface RCTLocationModule : RCTEventEmitter <RCTBridgeModule, AMapLocationManagerDelegate>
 
 @property (nonatomic, copy) AMapLocatingCompletionBlock completionBlock;
+
 @end
 
 @implementation RCTLocationModule {
@@ -31,10 +32,8 @@ RCT_REMAP_METHOD(init, key:(NSString *)key resolver:(RCTPromiseResolveBlock)reso
     } else {
         resolve(nil);
     }
-
-    self.completionBlock = ^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error)
-    {
-        id json = [self json:location reGeocode:reGeocode];
+    self.completionBlock = ^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error){
+        id json = [self json:location reGeocode:regeocode];
         [self sendEventWithName:@"AMapGeolocation" body: json];
         [NSUserDefaults.standardUserDefaults setObject:json forKey:RCTLocationModule.storeKey];
     };
